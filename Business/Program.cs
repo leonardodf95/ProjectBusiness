@@ -11,6 +11,15 @@ namespace Business
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Enter Seller data:");
+            Console.Write("Name: ");
+            string sellername = Console.ReadLine();
+            Console.Write("Code Seller: ");
+            int code = int.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+            Seller seller = new Seller(sellername, code);
+
+            Console.WriteLine();
+            
             Console.WriteLine("Enter client Data: ");
             Console.Write("Name: ");
             string name = Console.ReadLine();
@@ -19,10 +28,11 @@ namespace Business
             Console.Write("Birth date (dd/MM/yyyy): " );
             DateTime bday = DateTime.Parse(Console.ReadLine());
             Client client = new Client(name, email, bday);
+            
             Console.WriteLine("Enter order data: ");
             Console.Write("Status: ");
             OrderStatus status = Enum.Parse<OrderStatus>(Console.ReadLine());
-            Order order = new Order(DateTime.Now, status, client);
+            Order order = new Order(DateTime.Now, status, client, seller);
             Console.Write("How Many Items to this order: ");
             int n = int.Parse(Console.ReadLine());
             for (int i = 1; i <= n; i++)
